@@ -194,7 +194,7 @@ public class Harvester : MonoBehaviour {
     }
 
     public int GetUpgradeCost() {
-        return (int)(tier * (tier * 2.75f) * 50);
+        return (int)(tier * (tier * 2.65f) * 50);
     }
 
     private void OnDrawGizmos() {

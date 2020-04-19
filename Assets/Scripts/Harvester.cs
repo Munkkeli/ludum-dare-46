@@ -182,7 +182,7 @@ public class Harvester : MonoBehaviour {
     }
 
     public string GetUpgradeMessage() {
-        string message = $"Upgrade beam ({GetUpgradeCost()}) wood";
+        string message = $"Upgrade beam ({GetUpgradeCost()} wood)";
 
         if (type == TowerType.Generic) {
             message += $"\n+{(power * _powerU * tier).ToString("F2")} power";

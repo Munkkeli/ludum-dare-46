@@ -6,6 +6,7 @@ public class Spruce : MonoBehaviour
 {
     public float health = 1000;
     public Color hitColor = Color.red;
+    public Tile tile;
 
     private SpriteRenderer renderer;
 
@@ -21,11 +22,23 @@ public class Spruce : MonoBehaviour
         
     }
 
-    public void Hit(float amount) {
-        StartCoroutine(DamageTint());
-        health -= amount;
+    public float Hit(float amount) {
+        if (gameObject == null) return 0;
 
-        if (health < 0) Destroy(gameObject);
+        StartCoroutine(DamageTint());
+        float damageDealt = Mathf.Min(amount, health);
+        health -= damageDealt;
+
+        if (health <= 0) {
+            if (tile != null) tile.isWalkable = true;
+            Destroy(gameObject);
+        }
+
+        return damageDealt;
+    }
+
+    private void OnDestroy() {
+        StopCoroutine("DamageTint");
     }
 
     public IEnumerator DamageTint() {

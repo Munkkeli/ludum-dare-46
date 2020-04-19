@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9189402207645314714}
   - component: {fileID: 7989454685830818333}
   - component: {fileID: -7433712312260060522}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,10 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d22d3bf55bd1f4a82470bd82c278ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 60
+  health: 10
   path: []
   speed: 0.5
-  deathSound: {fileID: 8300000, guid: 6e13399e86f8cb1458087de197b9aace, type: 3}
+  tintColor: {r: 0, g: 1, b: 0.24035454, a: 0}
 --- !u!58 &7989454685830818333
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -6,6 +6,10 @@ public class Map : MonoBehaviour
 {
     public static Map current;
 
+    public int MaxSize {
+        get { return size * size; }
+    }
+
     public float turretArea = 10;
     public int size = 64;
     public float tileSize = 1;
@@ -61,7 +65,7 @@ public class Map : MonoBehaviour
                     spawnPoints.Add((Vector2)point);
 
                     // TODO: Remove this
-                    Instantiate(spawn, (Vector2)point, Quaternion.identity);
+                    // Instantiate(spawn, (Vector2)point, Quaternion.identity);
 
                     break;
                 }
@@ -83,20 +87,24 @@ public class Map : MonoBehaviour
                 Vector2 position = center - (new Vector2(x * tileSize, y * tileSize));
                 position -= new Vector2(tileSize / 2, 0);
 
-                float height = CalculateTileState(position);
+                int weight = 10;
+                float path;
+                float height = CalculateTileState(position, out path);
+                if (path > 0.9f) weight = 0;
 
                 // Protect turret area
                 // height = Mathf.Clamp01(height - Mathf.Max(0, turretArea - Vector2.Distance(turret.position, position)));
 
                 position += variation;
 
+                tileTypeArray[((int)((x / downgrade)) * 30) + (int)(y / downgrade)] = height;
+                tiles[x, y] = new Tile(x, y, height < 0.4f, center - (new Vector2(x * tileSize, y * tileSize)), weight);
+
                 if (height > 0.5f) {
                     GameObject instance = Instantiate(spruceTree, position, Quaternion.identity);
                     instance.transform.localScale = new Vector2(1, 1) * ((height * 4) + Random.value);
+                    instance.GetComponent<Spruce>().tile = tiles[x, y];
                 }
-
-                tileTypeArray[((int)((x / downgrade)) * 30) + (int)(y / downgrade)] = height;
-                tiles[x, y] = new Tile(x, y, height < 0.4f, center - (new Vector2(x * tileSize, y * tileSize)));
             }
         }
 
@@ -104,18 +112,22 @@ public class Map : MonoBehaviour
         map.gameObject.transform.localScale = new Vector3(size * tileSize * 0.1f, 1, size * tileSize * 0.1f);
     }
 
-    private float CalculateTileState(Vector2 position) {
+    private float CalculateTileState(Vector2 position, out float path) {
         // Initial state from perlin noise
-        float state = Mathf.PerlinNoise(position.x * 0.75f, position.y * 0.75f) - 0.1f;
+        float state = Mathf.PerlinNoise(1000 + (position.x * 0.75f), 1000 + (position.y * 0.75f)) - 0.1f;
 
         // More forest at the end of the map
         state += Mathf.Clamp(Vector2.Distance(Vector2.zero, position) / (tileSize * (size * 1.5f)), 0, 0.8f);
+
+        path = 0;
 
         // Clear the inbound paths
         foreach (Vector2 line in _roadLines) {
             Vector2 point = FindNearestPointOnLine(Vector2.zero, line * 10f, position);
             float penalty = Mathf.Max(0, 4f - Vector2.Distance(point, position) * 4f) / 3f;
             state -= penalty;
+
+            path = Mathf.Max(path, penalty);
         }
 
         // Protect turret area
@@ -196,6 +208,16 @@ public class Map : MonoBehaviour
 
     private void OnDrawGizmos() {
         Vector2 center = new Vector2(tileSize * (size / 2), tileSize * (size / 2));
-        // Gizmos.DrawWireCube(center - new Vector2((size / 2) * tileSize, (size / 2) * tileSize), center + new Vector2((size / 2) * tileSize, (size / 2) * tileSize));
+        Gizmos.DrawWireCube(center - new Vector2((size / 2) * tileSize, (size / 2) * tileSize), center + new Vector2((size / 2) * tileSize, (size / 2) * tileSize));
+
+        /*
+        if (tiles != null) {
+            foreach (Tile tile in tiles) {
+                Gizmos.color = Color.white;
+                if (tile.weight > 0) Gizmos.color = Color.red;
+                Gizmos.DrawCube(tile.position, Vector2.one * tileSize);
+            }
+        }
+        */
     }
 }

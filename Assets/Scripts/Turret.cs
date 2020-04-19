@@ -10,6 +10,7 @@ public class Turret : MonoBehaviour
     public GameObject projectile;
     public AudioClip fireSound;
 
+    private Harvester harvester;
     private Enemy _currentTarget;
     private AudioSource _audioSource;
 
@@ -19,11 +20,14 @@ public class Turret : MonoBehaviour
     {
         _fireTimer = speed;
         _audioSource = GetComponent<AudioSource>();
+
+        harvester = Controller.CreateHarvester(transform.position, 5, 1, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (_currentTarget == null) {
             foreach (Enemy enemy in Enemy.enemyList) {
                 if (Vector2.Distance(transform.position, enemy.transform.position) < range) {
@@ -44,5 +48,6 @@ public class Turret : MonoBehaviour
             Instantiate(projectile, transform.position, gun.rotation);
             _audioSource.PlayOneShot(fireSound);
         }
+        */
     }
 }

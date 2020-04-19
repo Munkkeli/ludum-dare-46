@@ -21,12 +21,16 @@ public class Arrow : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
+        /*
         if (collision.gameObject.GetComponent<Spruce>() != null) {
             collision.gameObject.GetComponent<Spruce>().Hit(damage);
         }
+        */
+        /*
         if (collision.gameObject.GetComponent<Enemy>() != null) {
             collision.gameObject.GetComponent<Enemy>().Hit(damage);
         }
+        */
 
         AudioSource.PlayClipAtPoint(hitSound, transform.position);
 

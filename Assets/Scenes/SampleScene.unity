@@ -7935,40 +7935,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1374351295565479238, guid: 7ff612a7b030e8441ad7a2b353536bb1,
-        type: 3}
-      propertyPath: chopSound.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1374351295565479238, guid: 7ff612a7b030e8441ad7a2b353536bb1,
-        type: 3}
-      propertyPath: hitSounds.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1374351295565479238, guid: 7ff612a7b030e8441ad7a2b353536bb1,
-        type: 3}
-      propertyPath: deathSounds.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1374351295565479238, guid: 7ff612a7b030e8441ad7a2b353536bb1,
-        type: 3}
-      propertyPath: fallSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ca245878c3048de41a2e5b4ddd3afed4, type: 3}
-    - target: {fileID: 1374351295565479238, guid: 7ff612a7b030e8441ad7a2b353536bb1,
-        type: 3}
-      propertyPath: chopSound.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 99b7f6f0eac8f8d4ea5d79c4f7f1dc73, type: 3}
-    - target: {fileID: 1374351295565479238, guid: 7ff612a7b030e8441ad7a2b353536bb1,
-        type: 3}
-      propertyPath: deathSounds.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 6e13399e86f8cb1458087de197b9aace, type: 3}
-    - target: {fileID: 1374351295565479238, guid: 7ff612a7b030e8441ad7a2b353536bb1,
-        type: 3}
-      propertyPath: hitSounds.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 0b9cc502050011340a07b556eeed14e8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ff612a7b030e8441ad7a2b353536bb1, type: 3}

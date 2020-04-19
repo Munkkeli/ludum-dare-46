@@ -21,7 +21,7 @@ public class Controller : MonoBehaviour
     public bool end = false;
     public bool endDone = false;
 
-    public int towerPrice = 180;
+    public int towerPrice = 220;
     public int upgradeCost = 100;
 
     private Transform _movedHarvester;

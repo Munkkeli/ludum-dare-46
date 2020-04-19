@@ -97,7 +97,11 @@ public class UI : MonoBehaviour
                     if (hit.gameObject == upgradeButton && Controller.current.wood >= cost) {
                         Controller.current.wood -= cost;
                         selected.lastCost = cost;
-                        selected.Upgrade();
+                        if (selected.tier < 5) selected.Upgrade();
+
+                        if (selected.tier >= 5) {
+                            selected = null;
+                        }
                     }
                 }
                 
@@ -109,7 +113,7 @@ public class UI : MonoBehaviour
             attackButton.SetActive(false);
             harvestButton.SetActive(false);
             createButton.SetActive(true);
-        } else {
+        } else if (selected.tier < 5) {
             upgradeButton.GetComponentInChildren<TextMesh>().text = selected.GetUpgradeMessage();
             upgradeButton.SetActive(true);
         }

@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 1135646254}
   difficultyMultiplier: 0.75
-  waveDuration: 25
+  waveDuration: 22.5
   enemy: {fileID: 9189402207645314713, guid: b27308151c71d2649b3e755cb4cfb742, type: 3}
   _gameDuration: 0
   _currentWave:

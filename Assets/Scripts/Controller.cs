@@ -57,14 +57,16 @@ public class Controller : MonoBehaviour
 
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        charge += Time.deltaTime;
-
         if (charge >= requiredCharge && !endDone) {
             endDone = true;
             start = false;
             end = true;
             current.health = 0;
             return;
+        }
+
+        if (start) {
+            charge += Time.deltaTime;
         }
 
         if (Input.GetMouseButtonDown(0) && !startUi) {

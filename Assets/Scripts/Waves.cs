@@ -72,7 +72,7 @@ public class Waves : MonoBehaviour
         GameObject instance = Instantiate(this.enemy, point + new Vector2((0.5f - Random.value) * 0.5f, (0.5f - Random.value) * 0.5f), Quaternion.identity);
         Enemy enemy = instance.GetComponent<Enemy>();
         enemy.speed = enemy.speed + Random.Range(-enemy.speed * 0.1f, enemy.speed * 0.1f);
-        enemy.health = enemy.health + (_gameDuration / 80.5f);
+        enemy.health = enemy.health + (_gameDuration / 72.5f);
     }
 
     public Wave GetEnemiesToSpawn() {
